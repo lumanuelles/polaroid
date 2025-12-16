@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polaroid Maker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📷 Polaroid Maker</h1>
+            <p class="subtitle">Crie suas polaroids personalizadas para impressão</p>
+        </header>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-step active" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Tipo</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Upload</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Corte</span>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Exportar</span>
+            </div>
+        </div>
+
+        <!-- Step 1: Choose Polaroid Type -->
+        <section id="step1" class="step active">
+            <h2>Escolha o tipo de Polaroid</h2>
+            <div class="polaroid-options">
+                <!-- 1. Polaroid Clássica -->
+                <div class="polaroid-option" data-type="classic">
+                    <div class="polaroid-preview classic-preview"></div>
+                    <h3>Polaroid Clássica</h3>
+                    <p class="polaroid-subtitle">Original / i-Type / 600</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 8,8 × 10,7 cm</span>
+                        <span>Imagem: 7,9 × 7,9 cm</span>
+                    </div>
+                </div>
+                <!-- 2. Instax Mini -->
+                <div class="polaroid-option" data-type="mini">
+                    <div class="polaroid-preview mini-preview"></div>
+                    <h3>Instax Mini</h3>
+                    <p class="polaroid-subtitle">Formato clássico Instax</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 5,4 × 8,6 cm</span>
+                        <span>Imagem: 4,6 × 6,2 cm</span>
+                    </div>
+                </div>
+                <!-- 3. Instax Square -->
+                <div class="polaroid-option" data-type="square">
+                    <div class="polaroid-preview square-preview"></div>
+                    <h3>Instax Square</h3>
+                    <p class="polaroid-subtitle">Oficial</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 8,6 × 7,2 cm</span>
+                        <span>Imagem: 6,2 × 6,2 cm</span>
+                    </div>
+                </div>
+                <!-- 4. Instax Wide -->
+                <div class="polaroid-option" data-type="wide">
+                    <div class="polaroid-preview wide-preview"></div>
+                    <h3>Instax Wide</h3>
+                    <p class="polaroid-subtitle">Formato panorâmico</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 10,8 × 8,6 cm</span>
+                        <span>Imagem: 9,9 × 6,2 cm</span>
+                    </div>
+                </div>
+                <!-- 5. Polaroid Go -->
+                <div class="polaroid-option" data-type="go">
+                    <div class="polaroid-preview go-preview"></div>
+                    <h3>Polaroid Go</h3>
+                    <p class="polaroid-subtitle">Compacto e portátil</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 5,4 × 6,6 cm</span>
+                        <span>Imagem: 4,7 × 4,7 cm</span>
+                    </div>
+                </div>
+                <!-- 6. Instax Mini Link -->
+                <div class="polaroid-option" data-type="mini-link">
+                    <div class="polaroid-preview mini-link-preview"></div>
+                    <h3>Instax Mini Link</h3>
+                    <p class="polaroid-subtitle">Mini Link / Mini Print</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 5,4 × 8,6 cm</span>
+                        <span>Imagem: 4,6 × 6,2 cm</span>
+                    </div>
+                </div>
+                <!-- 7. Polaroid Slim -->
+                <div class="polaroid-option" data-type="slim">
+                    <div class="polaroid-preview slim-preview"></div>
+                    <h3>Polaroid Slim</h3>
+                    <p class="polaroid-subtitle">Formato vertical criativo</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 5,0 × 7,5 cm</span>
+                        <span>Imagem: 4,0 × 5,0 cm</span>
+                    </div>
+                </div>
+                <!-- 8. Mini Quadrado -->
+                <div class="polaroid-option" data-type="mini-square">
+                    <div class="polaroid-preview mini-square-preview"></div>
+                    <h3>Mini Quadrado</h3>
+                    <p class="polaroid-subtitle">Adaptado / Design</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 6,0 × 7,0 cm</span>
+                        <span>Imagem: 5,0 × 5,0 cm</span>
+                    </div>
+                </div>
+                <!-- 9. Micro Polaroid -->
+                <div class="polaroid-option" data-type="micro">
+                    <div class="polaroid-preview micro-preview"></div>
+                    <h3>Micro Polaroid</h3>
+                    <p class="polaroid-subtitle">Não oficial / Design</p>
+                    <div class="polaroid-specs">
+                        <span>Total: 4,5 × 6,0 cm</span>
+                        <span>Imagem: 3,5 × 3,5 cm</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step 2: Upload Images -->
+        <section id="step2" class="step">
+            <h2>Faça upload das suas fotos</h2>
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p>Arraste suas fotos aqui ou clique para selecionar</p>
+                <input type="file" id="fileInput" multiple accept="image/*">
+            </div>
+            <div class="uploaded-images" id="uploadedImages"></div>
+            <div class="step-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(1)">Voltar</button>
+                <button class="btn btn-primary" id="continueToStep3" disabled>Continuar</button>
+            </div>
+        </section>
+
+        <!-- Step 3: Crop Images -->
+        <section id="step3" class="step">
+            <h2>Ajuste o enquadramento</h2>
+            <div class="crop-container">
+                <div class="crop-sidebar">
+                    <h3>Fotos</h3>
+                    <div class="image-thumbnails" id="imageThumbnails"></div>
+                </div>
+                <div class="crop-main">
+                    <div class="crop-area" id="cropArea">
+                        <img id="cropImage" src="" alt="Imagem para corte">
+                        <div class="crop-overlay" id="cropOverlay">
+                            <div class="crop-box" id="cropBox">
+                                <div class="resize-handle resize-nw" data-direction="nw"></div>
+                                <div class="resize-handle resize-ne" data-direction="ne"></div>
+                                <div class="resize-handle resize-sw" data-direction="sw"></div>
+                                <div class="resize-handle resize-se" data-direction="se"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crop-controls">
+                        <button class="btn btn-small" id="zoomIn">🔍+</button>
+                        <button class="btn btn-small" id="zoomOut">🔍-</button>
+                        <button class="btn btn-small" id="resetCrop">↺ Reset</button>
+                    </div>
+                </div>
+            </div>
+            <div class="step-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(2)">Voltar</button>
+                <button class="btn btn-primary" id="continueToStep4">Continuar</button>
+            </div>
+        </section>
+
+        <!-- Step 4: Export Options -->
+        <section id="step4" class="step">
+            <h2>Como deseja exportar?</h2>
+            
+            <!-- Background Color Options -->
+            <div class="background-options">
+                <h3>🎨 Cor de Fundo da Moldura</h3>
+                
+                <div class="color-section">
+                    <h4>Cores Principais</h4>
+                    <div class="color-grid main-colors">
+                        <div class="color-option selected" data-color="#ffffff" data-name="Branco">
+                            <div class="color-swatch" style="background: #ffffff; border: 1px solid #ddd;"></div>
+                            <span>Branco</span>
+                        </div>
+                        <div class="color-option" data-color="#f5f5dc" data-name="Off-white">
+                            <div class="color-swatch" style="background: #f5f5dc;"></div>
+                            <span>Off-white</span>
+                        </div>
+                        <div class="color-option" data-color="#1a1a1a" data-name="Preto">
+                            <div class="color-swatch" style="background: #1a1a1a;"></div>
+                            <span>Preto</span>
+                        </div>
+                        <div class="color-option" data-color="#d3d3d3" data-name="Cinza Claro">
+                            <div class="color-swatch" style="background: #d3d3d3;"></div>
+                            <span>Cinza Claro</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>Cores Pastéis</h4>
+                    <div class="color-grid pastel-colors">
+                        <div class="color-option" data-color="#ffb6c1" data-name="Rosa">
+                            <div class="color-swatch" style="background: #ffb6c1;"></div>
+                            <span>Rosa</span>
+                        </div>
+                        <div class="color-option" data-color="#add8e6" data-name="Azul">
+                            <div class="color-swatch" style="background: #add8e6;"></div>
+                            <span>Azul</span>
+                        </div>
+                        <div class="color-option" data-color="#98fb98" data-name="Verde">
+                            <div class="color-swatch" style="background: #98fb98;"></div>
+                            <span>Verde</span>
+                        </div>
+                        <div class="color-option" data-color="#e6e6fa" data-name="Lilás">
+                            <div class="color-swatch" style="background: #e6e6fa;"></div>
+                            <span>Lilás</span>
+                        </div>
+                        <div class="color-option" data-color="#fffacd" data-name="Amarelo">
+                            <div class="color-swatch" style="background: #fffacd;"></div>
+                            <span>Amarelo</span>
+                        </div>
+                        <div class="color-option" data-color="#ffdab9" data-name="Pêssego">
+                            <div class="color-swatch" style="background: #ffdab9;"></div>
+                            <span>Pêssego</span>
+                        </div>
+                        <div class="color-option" data-color="#e0ffff" data-name="Ciano">
+                            <div class="color-swatch" style="background: #e0ffff;"></div>
+                            <span>Ciano</span>
+                        </div>
+                        <div class="color-option" data-color="#dda0dd" data-name="Lavanda">
+                            <div class="color-swatch" style="background: #dda0dd;"></div>
+                            <span>Lavanda</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>Cor Personalizada</h4>
+                    <div class="custom-color-options">
+                        <div class="custom-color-input">
+                            <label>Picker:</label>
+                            <input type="color" id="customColorPicker" value="#ffffff">
+                        </div>
+                        <div class="custom-color-input">
+                            <label>HEX:</label>
+                            <input type="text" id="hexInput" placeholder="#ffffff" maxlength="7">
+                        </div>
+                        <div class="custom-color-input rgb-inputs">
+                            <label>RGB:</label>
+                            <input type="number" id="rgbR" min="0" max="255" placeholder="R">
+                            <input type="number" id="rgbG" min="0" max="255" placeholder="G">
+                            <input type="number" id="rgbB" min="0" max="255" placeholder="B">
+                        </div>
+                        <div class="custom-color-input cmyk-inputs">
+                            <label>CMYK:</label>
+                            <input type="number" id="cmykC" min="0" max="100" placeholder="C">
+                            <input type="number" id="cmykM" min="0" max="100" placeholder="M">
+                            <input type="number" id="cmykY" min="0" max="100" placeholder="Y">
+                            <input type="number" id="cmykK" min="0" max="100" placeholder="K">
+                        </div>
+                        <button class="btn btn-small" id="applyCustomColor">Aplicar Cor</button>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>Efeitos Adicionais (combinam com a cor escolhida)</h4>
+                    <div class="additional-effects">
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="effectGradient">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">🌈 Gradiente Suave</span>
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" id="effectStripes">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-label">📏 Linhas Finas</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>Backgrounds Especiais</h4>
+                    <div class="special-backgrounds">
+                        <div class="bg-option" data-bg="rainbow" data-name="Arco-íris">
+                            <div class="bg-swatch rainbow-swatch"></div>
+                            <span>Arco-íris</span>
+                        </div>
+                        <div class="bg-option" data-bg="recycled-paper" data-name="Papel Reciclado">
+                            <div class="bg-swatch recycled-paper-swatch" style="background: url('img/reciclado.jpg') center/cover;"></div>
+                            <span>Papel Reciclado</span>
+                        </div>
+                        <div class="bg-option" data-bg="matte-texture" data-name="Textura Fosca">
+                            <div class="bg-swatch matte-texture-swatch"></div>
+                            <span>Textura Fosca</span>
+                        </div>
+                        <div class="bg-option" data-bg="vintage-photo" data-name="Foto Antiga">
+                            <div class="bg-swatch vintage-photo-swatch"></div>
+                            <span>Foto Antiga</span>
+                        </div>
+                        <div class="bg-option" data-bg="geometric" data-name="Geométrico">
+                            <div class="bg-swatch geometric-swatch" style="background: url('img/geometrico.jpg') center/cover;"></div>
+                            <span>Geométrico</span>
+                        </div>
+                        <div class="bg-option" data-bg="floral" data-name="Floral">
+                            <div class="bg-swatch floral-swatch" style="background: url('img/floral.jpg') center/cover;"></div>
+                            <span>Floral</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>Molduras Especiais</h4>
+                    <div class="special-frames">
+                        <div class="frame-option" data-frame="double-border" data-name="Borda Dupla">
+                            <div class="frame-swatch double-border-swatch"></div>
+                            <span>Borda Dupla</span>
+                        </div>
+                        <div class="frame-option" data-frame="dotted-frame" data-name="Moldura Pontilhada">
+                            <div class="frame-swatch dotted-frame-swatch"></div>
+                            <span>Moldura Pontilhada</span>
+                        </div>
+                        <div class="frame-option" data-frame="hand-drawn" data-name="Desenhado à Mão">
+                            <div class="frame-swatch hand-drawn-swatch"></div>
+                            <span>Desenhado à Mão</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unified Preview Canvas -->
+                <div class="color-section unified-preview-section">
+                    <h4>🎨 Preview e Posicionamento</h4>
+                    <p class="info-text">Arraste textos e elementos gráficos para posicioná-los. Arraste o canto inferior direito dos gráficos para redimensionar.</p>
+                    <div class="unified-canvas-container">
+                        <canvas id="unifiedPreviewCanvas" width="400" height="480"></canvas>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>📝 Textos</h4>
+                    <div class="text-management">
+                        <div class="text-actions">
+                            <button class="btn btn-small btn-primary" id="addTextBtn">+ Adicionar Texto</button>
+                            <button class="btn btn-small btn-secondary" id="resetTextPositionsBtn">↺ Resetar Posições</button>
+                        </div>
+                        <div class="text-elements-list" id="textElementsList"></div>
+                        <div class="text-options">
+                            <div class="text-input-group">
+                                <label for="textContent">Texto:</label>
+                                <input type="text" id="textContent" placeholder="Digite o texto..." maxlength="50" disabled>
+                            </div>
+                            <div class="text-input-group">
+                                <label for="fontSelect">Fonte:</label>
+                                <select id="fontSelect" disabled>
+                                    <option value="Arial">Arial</option>
+                                    <option value="Georgia">Georgia</option>
+                                    <option value="Courier New">Courier New</option>
+                                    <option value="Comic Sans MS">Comic Sans MS</option>
+                                    <option value="Times New Roman">Times New Roman</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Impact">Impact</option>
+                                    <option value="Brush Script MT">Brush Script</option>
+                                </select>
+                            </div>
+                            <div class="text-input-group">
+                                <label for="textColor">Cor do Texto:</label>
+                                <input type="color" id="textColor" value="#333333" disabled>
+                            </div>
+                            <div class="text-input-group">
+                                <label for="textSize">Tamanho:</label>
+                                <input type="range" id="textSize" min="10" max="50" value="20" disabled>
+                                <span id="textSizeValue">20px</span>
+                            </div>
+                            <div class="text-input-group">
+                                <label for="textAngle">Ângulo:</label>
+                                <input type="range" id="textAngle" min="-180" max="180" value="0" disabled>
+                                <span id="textAngleValue">0°</span>
+                            </div>
+                            <button class="btn btn-small btn-danger" id="deleteTextBtn" disabled>🗑️ Excluir Texto</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="color-section">
+                    <h4>🖼️ Elementos Gráficos</h4>
+                    <div class="graphic-elements-section">
+                        <p class="info-text">Faça upload de imagens (PNG, JPG) para adicionar à polaroid</p>
+                        <div class="graphic-upload-area" id="graphicUploadArea">
+                            <span>📎 Clique ou arraste imagens aqui</span>
+                            <input type="file" id="graphicInput" multiple accept="image/png,image/jpeg,image/gif">
+                        </div>
+                        <div class="uploaded-graphics" id="uploadedGraphics"></div>
+                        <div class="graphic-controls-section">
+                            <div class="text-input-group">
+                                <label for="graphicAngle">Ângulo:</label>
+                                <input type="range" id="graphicAngle" min="-180" max="180" value="0" disabled>
+                                <span id="graphicAngleValue">0°</span>
+                            </div>
+                        </div>
+                        <div class="overlap-option">
+                            <label class="checkbox-option">
+                                <input type="checkbox" id="overlapCheckbox">
+                                <span class="checkbox-custom"></span>
+                                <span>Permitir que os elementos sobreponham a imagem da foto</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="export-options">
+                <div class="export-option" data-export="individual">
+                    <div class="export-icon">🖼️</div>
+                    <h3>Imagens Individuais</h3>
+                    <p>Baixe cada polaroid como uma imagem separada</p>
+                </div>
+                <div class="export-option" data-export="pdf">
+                    <div class="export-icon">📄</div>
+                    <h3>Arquivo PDF</h3>
+                    <p>PDF A4 otimizado para impressão</p>
+                </div>
+            </div>
+
+            <!-- PDF Options (hidden by default) -->
+            <div class="pdf-options" id="pdfOptions">
+                <h3>Opções de marcação para corte</h3>
+                <div class="cut-mark-options">
+                    <label class="radio-option">
+                        <input type="radio" name="cutMarks" value="none" checked>
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Sem marcação</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="cutMarks" value="dashed">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Linha pontilhada</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="cutMarks" value="solid">
+                        <span class="radio-custom"></span>
+                        <span class="radio-label">Linha reta</span>
+                    </label>
+                </div>
+
+                <h3 style="margin-top: 20px;">Espaçamento entre polaroids</h3>
+                <div class="spacing-option">
+                    <label for="spacingInput">Espaçamento (cm):</label>
+                    <input type="number" id="spacingInput" min="0" max="5" step="0.1" value="0" class="spacing-input">
+                </div>
+            </div>
+
+            <div class="step-buttons">
+                <button class="btn btn-secondary" onclick="goToStep(3)">Voltar</button>
+                <button class="btn btn-primary" id="generateBtn" disabled>Gerar Polaroids</button>
+            </div>
+        </section>
+
+        <!-- Result Section -->
+        <section id="resultSection" class="step">
+            <h2>Suas Polaroids</h2>
+            <div class="result-gallery" id="resultGallery"></div>
+            <div class="step-buttons">
+                <button class="btn btn-secondary" onclick="startOver()">Começar Novamente</button>
+                <button class="btn btn-primary" id="downloadAllBtn">Baixar Todas</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p>Gerando suas polaroids...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
